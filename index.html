@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lyyden Court · 3D Walkthrough</title>
+  <meta name="description" content="Interactive 3D walkthrough of the single storey dwelling for Bluemount Living at 18A Amsterdam Cr, Salisbury Downs SA (JDN Designs PD-08).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <header id="topbar">
+      <div class="brand">
+        <div class="logo">3D</div>
+        <div class="bt"><b>Lyyden Court</b><span>18A Amsterdam Cr, Salisbury Downs SA · JDN26-852 · PD-08</span></div>
+      </div>
+      <nav id="tabs">
+        <button data-mode="exterior" class="active">Exterior</button>
+        <button data-mode="plan">Floor plan</button>
+        <button data-mode="roof">Roof plan</button>
+        <button data-mode="site">Site</button>
+        <button data-mode="electrical">Electrical</button>
+        <button data-mode="walk">Walk through</button>
+        <button data-tool="sun">Sun &amp; weather</button>
+        <button data-tool="measure">Measure</button>
+        <button data-tool="finishes">Finishes</button>
+        <button data-tool="hq" id="hqBtn" title="High quality rendering (ambient occlusion, 4K shadows, full resolution)">HQ</button>
+      </nav>
+    </header>
+    <div id="viewbar">
+      <span class="vlabel">VIEW</span>
+      <div id="views"></div>
+      <span id="fps" class="fps"></span><button id="shot" class="chip ghost" title="Save a screenshot (PNG)">&#128247; Screenshot</button>
+    </div>
+    <main id="stage"></main>
+
+    <aside id="panel" hidden>
+      <div class="phead"><h3 id="ptitle"></h3><button id="pclose" title="Close">&times;</button></div>
+      <div id="pbody"></div>
+    </aside>
+
+    <div id="hud">
+      <div id="crosshair"></div>
+      <div id="roomName"></div>
+      <div id="hint" hidden></div>
+      <canvas id="minimap" width="230" height="200"></canvas>
+      <div id="help">WASD move · Shift run · Space jump · C crouch · E interact · F torch · L lights · N night · M map · Esc release</div>
+    </div>
+    <div id="playOverlay" hidden>
+      <div class="play">
+        <div class="pbig">&#9654;</div>
+        <b>Click to walk through</b>
+        <span>Mouse to look · WASD to move · E to open doors &amp; switch lights · Esc to release</span>
+      </div>
+    </div>
+
+    <div id="loading">
+      <div class="spin"></div>
+      <b>Lyyden Court</b>
+      <span id="loadmsg">Loading three.js…</span>
+      <noscript>This walkthrough needs JavaScript enabled.</noscript>
+    </div>
+  </div>
+  <script type="module" src="js/main.js"></script>
+  <script>
+    // Friendly message if opened directly from disk (ES modules need http://)
+    if (location.protocol === 'file:') {
+      document.getElementById('loadmsg').innerHTML = 'Please open this through a web server (GitHub Pages, or run <code>python -m http.server</code> in this folder and visit http://localhost:8000).';
+    }
+  </script>
+</body>
+</html>
